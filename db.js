@@ -6,7 +6,8 @@ const url = `mongodb+srv://${env.db_user}:${env.db_password}@${env.db_link}.mong
 moongose
     .connect(url,{
         useNewUrlParser: true,
-        useUnifiedTopology: true
+        useUnifiedTopology: true,
+        useCreateIndex: true
     })
     .then(db => console.log("DB is connected"))
     .catch(err => console.error(err))
