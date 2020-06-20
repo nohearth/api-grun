@@ -11,7 +11,7 @@ async function createUser(req, res) {
     email: value.email
   })
   if (valUser) {
-    return res.status(400).json({message: 'Error, ya existe el correo'})
+    return res.status(401).json({message: 'Error, ya existe el correo'})
   }
 
   const user = new mUser({
@@ -23,10 +23,10 @@ async function createUser(req, res) {
 
   try {
     const saveUser = await user.save()
-    const token = await user.generateToken()
-    res.status(200).json({saveUser, token})
+    //const token = await user.generateToken()
+    res.status(200).json({saveUser})
   } catch (e) {
-    res.status(400).json({message: e})
+    res.status(402).json({message: e})
   }
 }
 
@@ -43,7 +43,7 @@ async function loginUser(req, res) {
       return res.status(400).json({message: 'Error, contraseña invalida'})
     }
     const token = await valUser.generateToken()
-    res.status(200).json({valUser, token})
+    res.status(200).json(token)
   } catch (e) {
     res.status(400).json({message: e})
   }
