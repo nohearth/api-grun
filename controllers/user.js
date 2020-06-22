@@ -24,7 +24,7 @@ async function createUser(req, res) {
   try {
     const saveUser = await user.save()
     //const token = await user.generateToken()
-    res.status(200).json({saveUser})
+    res.status(200).json(saveUser)
   } catch (e) {
     res.status(402).json({message: e})
   }
@@ -55,11 +55,34 @@ async function getUserDetails(req, res) {
 
 async function getAllUser(req, res) {
   try {
-      const rol = await mUser.find()
-      res.status(200).json(rol)
+      const user = await mUser.find()
+      res.status(200).json(user)
   } catch (e) {
       res.status(400).json({message: e})
   }    
+}
+async function getOneUser(req, res) {
+  try {
+    const user = await mUser.findOne({email: req.params.email})
+    res.json(user)
+  } catch (e) {
+    res.json({message: e})
+  }  
+}
+
+async function updateUser(req, res) {
+  const user = await mUser.findOne({email: req.params.email})
+  const data = validate.validateUpdate(req.body, req.file, user)
+  try {
+    const user = await mUser.updateOne({
+      email: req.params.email
+    },{
+      $set: data
+    })
+    res.json(user)
+  } catch (e) {
+    res.json({message: e})
+  } 
 }
 
 async function deleteUser(req, res) {
@@ -76,5 +99,7 @@ module.exports = {
   loginUser,
   getUserDetails,
   getAllUser,
-  deleteUser
+  deleteUser,
+  getOneUser,
+  updateUser
 }

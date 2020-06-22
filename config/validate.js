@@ -24,11 +24,29 @@ function validateSignUp(body) {
     return {value}
 }
 
+function validateUpdate(body, file, user) {
+    let firstName = body.firstName
+    let lastName = body.lastName
+    let email = body.email
+    let password = body.password
+    let sex = body.sex
+    let image = file.path
+    return data = {
+        firstName: firstName || (firstName = user.firstName),
+        lastName: lastName || (lastName = user.lastName),
+        email: email || (email = user.email),
+        password: password || (password = user.password),
+        sex: sex || (sex = user.sex),
+        image: image || (image = user.image)
+    }
+}
+
 function comparePassword(password, encrypedPassword) {
     return bcrypt.compare(password, encrypedPassword)
 }
 
 module.exports = {
     validateSignUp,
-    comparePassword
+    comparePassword,
+    validateUpdate
 }

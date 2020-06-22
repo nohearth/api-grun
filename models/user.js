@@ -23,7 +23,7 @@ const userSchema = mongoose.Schema({
     sex: {
         type: String
     },
-    img: {
+    image: {
         type: String
     },
     createAt: {
@@ -53,8 +53,9 @@ userSchema.methods.generateToken = async function() {
         _id: user._id, 
         firstName: user.firstName,
         lastName: user.lastName, 
-        email: user.email },
-    "secret")
+        email: user.email,
+        image: user.image
+    },"secret")
     user.tokens = user.tokens.concat({ token })
     await user.save()
     return token
