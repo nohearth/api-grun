@@ -13,6 +13,10 @@ const postSchema = mongoose.Schema({
     type: Schema.ObjectId,
     ref: 'User'
   },
+  createdAt: {
+    type: Date,
+    default: Date.now()
+  },
   status: {
     type: Boolean,
     required: true,

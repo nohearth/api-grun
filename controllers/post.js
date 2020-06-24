@@ -17,6 +17,14 @@ async function createPost(req, res) {
   }
 }
 
+async function getAllPost(req, res) {
+  try {
+    const post = await mPost.find().populate({path: 'idUser'})
+    res.json(post)
+  } catch (e) {
+    res.json({message: e})
+  }
+}
 async function getOnePost(req, res) {
   try {
     const post = await mPost.findOne({
@@ -39,8 +47,37 @@ async function getAllPostByUser(req, res) {
   }
 }
 
+async function deletePost(req, res) {
+  try {
+    const post = await mPost.deleteOne({
+      _id: req.params.id
+    })
+    res.json(post)
+  } catch (e) {
+    res.json({message: e})
+  }
+}
+
+async function updatePost(req, res) {
+  const post = await mPost.findOne({_id: req.params.id})
+  const data = ""
+  try {
+    const postSave = await mPost.updateOne({
+      _id: data.id
+    }, {
+      $set: data
+    })
+    res.json(postSave)
+  } catch (e) {
+    res.json({message: e})
+  }  
+}
+
 module.exports = {
   createPost,
   getOnePost,
-  getAllPostByUser
+  getAllPostByUser,
+  deletePost,
+  updatePost,
+  getAllPost
 }

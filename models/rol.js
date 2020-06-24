@@ -10,7 +10,7 @@ const rolSchema = mongoose.Schema({
         required: true,
         default: true
     },
-    create_at: {
+    createdAt: {
         type: Date,
         default: Date.now
     }

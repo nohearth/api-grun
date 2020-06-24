@@ -75,7 +75,7 @@ async function updateUser(req, res) {
   const data = validate.validateUpdate(req.body, req.file, user)
   try {
     const user = await mUser.updateOne({
-      email: req.params.email
+      email: data.email
     },{
       $set: data
     })

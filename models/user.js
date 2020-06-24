@@ -34,7 +34,7 @@ const userSchema = mongoose.Schema({
         type: String,
         default: "1"
     },
-    id_rol: {
+    idRol: {
         type: Number,
         default: 2
     },
