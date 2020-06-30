@@ -6,6 +6,8 @@ const { extend } = require('@hapi/joi')
 //Conexion a la base de datos
 require('./db.js')
 
+const port = process.env.PORT || 3000;
+
 const app = express()
 
 app.use('/uploads', express.static('uploads'))
@@ -18,7 +20,7 @@ app.use(cors())
 require('./routes')(app)
 
 app.get('/',(req, res) =>{
-    res.send('Connect')
+    res.send('Connectado')
 })
 
-app.listen(3000)
+app.listen(port)
