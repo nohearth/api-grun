@@ -1,6 +1,5 @@
 const Joi = require('@hapi/joi')
 const bcrypt = require('bcryptjs')
-const passport = require('passport')
 
 function validateSignUp(body) {
     const schema = Joi.object().keys({
@@ -30,7 +29,7 @@ function validateUpdate(body, file, user) {
     let email = body.email
     let password = body.password
     let sex = body.sex
-    let image = file.path
+    let image = setUrlImg(file.path)
     return data = {
         firstName: firstName || (firstName = user.firstName),
         lastName: lastName || (lastName = user.lastName),
@@ -41,6 +40,9 @@ function validateUpdate(body, file, user) {
     }
 }
 
+function setUrlImg(img) {
+    return `http://localhost:3000/${img}`
+}
 function comparePassword(password, encrypedPassword) {
     return bcrypt.compare(password, encrypedPassword)
 }
@@ -48,5 +50,6 @@ function comparePassword(password, encrypedPassword) {
 module.exports = {
     validateSignUp,
     comparePassword,
-    validateUpdate
+    validateUpdate,
+    setUrlImg
 }

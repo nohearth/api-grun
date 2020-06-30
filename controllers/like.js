@@ -16,7 +16,8 @@ async function createLike(req, res) {
 async function getUserLike(req, res) {
   try {
     const like = await mLike.findOne({
-      idUser: req.params.idUser
+      idUser: req.params.idUser,
+      idPost: req.params.idPost
     })
     res.json(like)
   } catch (e) {
@@ -37,10 +38,10 @@ async function getAllLikeByPost(req, res) {
   }
 }
 
-async function deleteLikeByUser(req, res) {
+async function deleteLike(req, res) {
   try {
     const like = await mLike.deleteOne({
-      idUser: req.params.idUser
+      _id: req.params.id
     })
     res.json(like)
   } catch (e) {
@@ -52,6 +53,6 @@ async function deleteLikeByUser(req, res) {
 module.exports = {
   createLike,
   getAllLikeByPost,
-  deleteLikeByUser,
+  deleteLike,
   getUserLike
 }
