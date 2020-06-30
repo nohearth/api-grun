@@ -3,7 +3,7 @@ const cLike = require('../controllers/like')
 
 router.post('/', cLike.createLike)
 router.get('/post/:idPost', cLike.getAllLikeByPost)
-router.get('/user/:idUser', cLike.getUserLike)
-router.delete('/user/:idUser', cLike.deleteLikeByUser)
+router.get('/user/:idUser/:idPost', cLike.getUserLike)
+router.delete('/:id', cLike.deleteLike)
 
 module.exports = router
