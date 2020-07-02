@@ -50,9 +50,25 @@ async function deleteLike(req, res) {
   
 }
 
+async function updateLike(req, res) {
+  try {
+    const like = await mLike.updateOne({
+      _id: req.params.id
+    }, {
+      $set: {
+        status: req.body.status
+      }
+    })
+    res.json(like)
+  } catch (e) {
+    res.json({message: e})    
+  }
+}
+
 module.exports = {
   createLike,
   getAllLikeByPost,
   deleteLike,
-  getUserLike
+  getUserLike,
+  updateLike
 }

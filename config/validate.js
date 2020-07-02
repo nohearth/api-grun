@@ -29,14 +29,16 @@ function validateUpdate(body, file, user) {
     let email = body.email
     let password = body.password
     let sex = body.sex
-    let image = setUrlImg(file.path)
+    let image = body.image
+    let description = body.description
     return data = {
         firstName: firstName || (firstName = user.firstName),
         lastName: lastName || (lastName = user.lastName),
         email: email || (email = user.email),
         password: password || (password = user.password),
         sex: sex || (sex = user.sex),
-        image: image || (image = user.image)
+        image: image || (image = user.image),
+        description: description || (description = user.description)
     }
 }
 

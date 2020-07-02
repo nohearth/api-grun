@@ -1,4 +1,5 @@
 const mUser = require('../models/user')
+const mTools = require('../models/tools')
 const validate = require('../config/validate')
 
 async function createUser(req, res) {
@@ -63,7 +64,7 @@ async function getAllUser(req, res) {
 }
 async function getOneUser(req, res) {
   try {
-    const user = await mUser.findOne({email: req.params.email})
+    const user = await mUser.findOne({_id: req.params.id})
     res.json(user)
   } catch (e) {
     res.json({message: e})
@@ -71,7 +72,7 @@ async function getOneUser(req, res) {
 }
 
 async function updateUser(req, res) {
-  const user = await mUser.findOne({email: req.params.email})
+  const user = await mUser.findOne({_id: req.params.id})
   const data = validate.validateUpdate(req.body, req.file, user)
   try {
     const user = await mUser.updateOne({
@@ -93,6 +94,25 @@ async function deleteUser(req, res) {
       res.json({message: e})
   }    
 }
+//==============Solo pruebas
+async function createTool(req, res) {
+  const image = Buffer.from(req.file.path)
+  console.log  (req.file)
+
+  try {
+    const saveTool = await mTools.updateOne({
+      _id: req.params.id
+    }, {
+      $set: {
+        id: req.body.id,
+        imageProfile: image
+      }
+    })
+    res.json(saveTool)
+  } catch (e) {
+    res.json({message: e})
+  }
+}
 
 module.exports = {
   createUser,
@@ -101,5 +121,6 @@ module.exports = {
   getAllUser,
   deleteUser,
   getOneUser,
-  updateUser
+  updateUser,
+  createTool
 }

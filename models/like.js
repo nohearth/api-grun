@@ -9,6 +9,10 @@ const likeSchema = mongoose.Schema({
   idPost: {
     type: Schema.ObjectId,
     ref: 'Post'
+  },
+  status: {
+    type: String,
+    default: 'I'
   }
 })
 
