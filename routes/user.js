@@ -6,9 +6,9 @@ const auth = require('../config/auth')
 router.post('/signup', cUSer.createUser)
 router.post('/login', cUSer.loginUser)
 router.get('/', cUSer.getAllUser)
-router.get('/:email', cUSer.getOneUser)
+router.get('/:id', cUSer.getOneUser)
 router.get('/me', auth, cUSer.getUserDetails)
 router.delete('/:id', cUSer.deleteUser)
-router.put('/:email', upload.single('image'), cUSer.updateUser)
+router.put('/:id', cUSer.updateUser)
 
 module.exports = router
