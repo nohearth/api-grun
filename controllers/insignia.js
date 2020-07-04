@@ -16,7 +16,9 @@ async function addInsigniaByUser(req, res) {
 }
 
 async function createInsignia(req, res) {
-  const urlIcon = validate.setUrlImg(req.file.path)
+console.log(req.body)
+console.log(req.file)
+  /*const urlIcon = validate.setUrlImg(req.file.path)
   const insignia = new mInsignia({
     title: req.body.title,
     description: req.body.description,
@@ -30,7 +32,7 @@ async function createInsignia(req, res) {
     res.json(saveInsignia)
   } catch (e) {
     res.json({message: e})
-  }
+  }*/
 }
 
 async function getAllInsignias(req, res) {

@@ -43,7 +43,7 @@ function validateUpdate(body, file, user) {
 }
 
 function setUrlImg(img) {
-    return `http://localhost:3000/${img}`
+    return `http://localhost:3001/${img}`
 }
 function comparePassword(password, encrypedPassword) {
     return bcrypt.compare(password, encrypedPassword)
