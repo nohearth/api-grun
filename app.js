@@ -3,7 +3,7 @@ const bodyParser = require('body-parser')
 const passport = require('passport')
 const cors = require('cors')
 //Conexion a la base de datos
-require('./db.js')
+require('./db/db.js')
 
 const port = 3001;
 
