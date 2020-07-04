@@ -6,9 +6,9 @@ const notificacionSchema = mongoose.Schema({
         type: Schema.ObjectId,
         ref: 'User'
       },
-      idPost: {
-        type: Schema.ObjectId,
-        ref: 'Post'
+      message: {
+        type: String,
+        required: true
       },
       group: {
         type: String,
