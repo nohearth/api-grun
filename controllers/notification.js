@@ -1,8 +1,8 @@
-const mNotificacion = require('../models/notificacion')
+const mNotification = require('../models/notification')
 const mUser = require('../models/user')
 const validate = require('../config/validate')
 
-  async function createNotificacion(req, res) {
+  async function createNotification(req, res) {
     try {
     const user = await mUser.findOne({
       _id: req.body.idUserSecond
@@ -10,7 +10,7 @@ const validate = require('../config/validate')
     const name = `${user.firstName} ${user.lastName}`
     const msg = validate.messageNotficaciton(req.body.group, name)
     
-    const notificacion = mNotificacion.create({
+    const notificacion = mNotification.create({
         group: req.body.group,
         idUser: req.body.idUser,
         idUserSecond: req.body.idUserSecond,
@@ -23,9 +23,9 @@ const validate = require('../config/validate')
     }
   }
 
-  async function getUserNotificacion(req, res) {
+  async function getUserNotification(req, res) {
     try {
-      const notificacion = await mNotificacion.findOne({
+      const notificacion = await mNotification.findOne({
         _id: req.params.id,
       })
       res.json(notificacion)
@@ -34,17 +34,13 @@ const validate = require('../config/validate')
     }
   }
 
-  /*
-  async function addNotificacionByUser(req, res) {
-    const notificacion = new mListInsig({
-      idNotificacion: req.body.idNotificacion,
-      idUser: req.body.idUser,
-      idPost: req.body.idPost
-    })
+  async function getAllNotification(req, res) {
     try {
-      const saveNotificacion = await notificacion.save()
-      res.json(saveNotificacion)
+      const notificacion = await mNotification.find({
+        idUser: req.params.idUser
+      })
+      res.json(notificacion)
     } catch (e) {
       res.json({message: e})
     }
-  }*/
+  }

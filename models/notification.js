@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
-const notificacionSchema = mongoose.Schema({
+const notificationSchema = mongoose.Schema({
       idUser: {
         type: Schema.ObjectId,
         ref: 'User'
@@ -24,4 +24,4 @@ const notificacionSchema = mongoose.Schema({
       }
 })
 
-module.exports = mongoose.model('Notificacion', notificacionSchema)
+module.exports = mongoose.model('Notification', notificationSchema)
