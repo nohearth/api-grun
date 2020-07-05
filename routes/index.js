@@ -7,6 +7,6 @@ module.exports = function (app) {
     app.use('/comment', require('./comment'))
     app.use('/like', require('./like'))
     app.use('/insignia', require('./insignia'))
-    app.use('/notificacion', require('./notificacion'))
+    app.use('/notification', require('./notification'))
 }
 
