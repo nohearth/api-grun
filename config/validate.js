@@ -49,9 +49,31 @@ function comparePassword(password, encrypedPassword) {
     return bcrypt.compare(password, encrypedPassword)
 }
 
+function messageNotficaciton(group, name) {
+    const msg = ``
+    switch (group) {
+        case 'Post':
+            msg = `No se si este va, el de insignia, aun me falta pensarlo un poco`
+            break
+        case 'Like':
+            msg = `${name} ha reacionado a tu publicación`
+            break
+        case 'Comment':
+            msg = `${name} ha comentado tu publicación`
+            break
+        case 'Insignia':
+            msg = `Has conseguido una nueva insignia`
+            break    
+        default:
+            break;
+    }
+    return msg
+}
+
 module.exports = {
     validateSignUp,
     comparePassword,
     validateUpdate,
-    setUrlImg
+    setUrlImg,
+    messageNotficaciton
 }
