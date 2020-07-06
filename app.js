@@ -3,8 +3,9 @@ const bodyParser = require('body-parser')
 const passport = require('passport')
 const cors = require('cors')
 //Conexion a la base de datos
-require('./db.js')
+require('./db/db.js')
 
+const port = 3000
 const app = express()
 
 app.use('/uploads', express.static('uploads'))
@@ -20,4 +21,4 @@ app.get('/',(req, res) =>{
     res.send('Connect')
 })
 
-app.listen(3000)
+app.listen(port)

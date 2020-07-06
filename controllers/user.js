@@ -37,11 +37,11 @@ async function loginUser(req, res) {
       email: req.body.email
     })
     if (!valUser) {
-      return res.status(400).json({message: 'Error, el usuario no existe'})
+      return res.status(401).json({message: 'Error, el usuario no existe'})
     }
     const valPass = await validate.comparePassword(req.body.password, valUser.password)
     if(!valPass) {
-      return res.status(400).json({message: 'Error, contraseña invalida'})
+      return res.status(402).json({message: 'Error, contraseña invalida'})
     }
     const token = await valUser.generateToken()
     res.status(200).json(token)
@@ -95,6 +95,21 @@ async function deleteUser(req, res) {
   }    
 }
 //==============Solo pruebas
+
+async function dropTokens(req, res) {
+  try {
+    const user = await mUser.updateOne({
+      _id: req.params.id
+    },{
+      $set: {
+        tokens: []
+      }
+    })
+    res.json(user)
+  } catch (e) {
+    res.json({message: e})
+  }
+}
 async function createTool(req, res) {
   const image = Buffer.from(req.file.path)
   console.log  (req.file)
@@ -122,5 +137,6 @@ module.exports = {
   deleteUser,
   getOneUser,
   updateUser,
-  createTool
+  createTool,
+  dropTokens
 }
