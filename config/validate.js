@@ -43,31 +43,31 @@ function validateUpdate(body, file, user) {
 }
 
 function setUrlImg(img) {
-    return `http://localhost:3001/${img}`
+    return `http://localhost:3000/${img}`
 }
 function comparePassword(password, encrypedPassword) {
     return bcrypt.compare(password, encrypedPassword)
 }
 
 function messageNotficaciton(group, name) {
-    const msg = ``
+    let mssg = ``
     switch (group) {
         case 'Post':
-            msg = `No se si este va, el de insignia, aun me falta pensarlo un poco`
+            mssg = `No se si este va, el de insignia, aun me falta pensarlo un poco`
             break
         case 'Like':
-            msg = `${name} ha reacionado a tu publicación`
+            mssg = `${name} ha reacionado a tu publicación`
             break
         case 'Comment':
-            msg = `${name} ha comentado tu publicación`
+            mssg = `${name} ha comentado tu publicación`
             break
         case 'Insignia':
-            msg = `Has conseguido una nueva insignia`
+            mssg = `Has conseguido una nueva insignia`
             break    
         default:
             break;
     }
-    return msg
+    return mssg
 }
 
 module.exports = {

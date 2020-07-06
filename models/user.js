@@ -41,14 +41,10 @@ const userSchema = mongoose.Schema({
         type: Number,
         default: 2
     },
-    tokens: [
-        {
-            token: {
-                type: String,
-                required: true
-            }
-        }
-    ]
+    token: {
+        type: String,
+        required: true
+    }
 })
 userSchema.methods.generateToken = async function() {
     const user = this
@@ -57,9 +53,13 @@ userSchema.methods.generateToken = async function() {
         firstName: user.firstName,
         lastName: user.lastName, 
         email: user.email,
-        image: user.image
+        password: user.password,
+        image: user.image,
+        sex: user.sex,
+        description: user.description,
+        createAt: user.createAt
     },"secret")
-    user.tokens = user.tokens.concat({ token })
+    user.tokens = user.token.concat({ token })
     await user.save()
     return token
 }
