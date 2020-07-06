@@ -18,7 +18,7 @@ app.use(cors())
 require('./routes')(app)
 
 app.get('/',(req, res) =>{
-    res.send('Connect')
+    res.send('Connectado')
 })
 
 app.listen(port)

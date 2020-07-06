@@ -94,7 +94,7 @@ async function deleteUser(req, res) {
       res.json({message: e})
   }    
 }
-//==============Solo pruebas
+//==============Solo pruebas==========
 
 async function dropTokens(req, res) {
   try {
@@ -110,6 +110,7 @@ async function dropTokens(req, res) {
     res.json({message: e})
   }
 }
+
 async function createTool(req, res) {
   const image = Buffer.from(req.file.path)
   console.log  (req.file)
