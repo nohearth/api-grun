@@ -40,7 +40,7 @@ async function getAllPostByUser(req, res) {
   try {
     const post = await mPost.find({
       idUser: req.params.idUser
-    })
+    }).populate({path: 'idUser'})
     res.json(post)
   } catch (e) {
     res.json({message: e})

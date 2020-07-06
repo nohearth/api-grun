@@ -10,5 +10,6 @@ router.get('/:id', cUSer.getOneUser)
 router.get('/me', auth, cUSer.getUserDetails)
 router.delete('/:id', cUSer.deleteUser)
 router.put('/:id', cUSer.updateUser)
+router.put('/drop/:id', cUSer.dropTokens)
 
 module.exports = router
