@@ -5,7 +5,7 @@ const cors = require('cors')
 //Conexion a la base de datos
 require('./db/db.js')
 
-const port = 3000
+const port = 3001
 const app = express()
 
 app.use('/uploads', express.static('uploads'))

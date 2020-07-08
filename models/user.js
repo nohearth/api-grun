@@ -41,10 +41,14 @@ const userSchema = mongoose.Schema({
         type: Number,
         default: 2
     },
-    token: {
-        type: String,
-        required: true
-    }
+    tokens: [
+        {
+            token: {
+                type: String,
+                required: true
+            }
+        }
+    ]
 })
 userSchema.methods.generateToken = async function() {
     const user = this
@@ -59,7 +63,7 @@ userSchema.methods.generateToken = async function() {
         description: user.description,
         createAt: user.createAt
     },"secret")
-    user.tokens = user.token.concat({ token })
+    user.tokens = user.tokens.concat({ token })
     await user.save()
     return token
 }
