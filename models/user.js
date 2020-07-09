@@ -61,7 +61,7 @@ userSchema.methods.generateToken = async function() {
         description: user.description,
         createAt: user.createAt
     },"secret")
-    user.tokens = user.token.concat({ token })
+    user.tokens = user.tokens.concat({ token })
     await user.save()
     return token
 }
