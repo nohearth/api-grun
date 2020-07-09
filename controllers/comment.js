@@ -28,6 +28,19 @@ async function getAllCommenttByPost(req, res) {
   }
 }
 
+async function getOneComment(req, res) {
+  try {
+    const comment = await mComment.find({
+      _id: req.params.id
+    }).populate({
+      path: 'idUser'
+    })
+    res.json(comment)
+  } catch (e) {
+    res.json({message: e})
+  }
+}
+
 async function deleteComment(req, res) {
   try {
     const comment = await mComment.deleteOne({
@@ -58,5 +71,6 @@ module.exports = {
   createComment,
   getAllCommenttByPost,
   updateComment,
-  deleteComment
+  deleteComment,
+  getOneComment
 }

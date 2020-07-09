@@ -41,10 +41,12 @@ const userSchema = mongoose.Schema({
         type: Number,
         default: 2
     },
-    token: {
+    tokens: [{
+        token: {
         type: String,
         required: true
-    }
+        }
+    }]
 })
 userSchema.methods.generateToken = async function() {
     const user = this

@@ -28,7 +28,8 @@ async function getUserLike(req, res) {
 async function getAllLikeByPost(req, res) {
   try {
     const like = await mLike.find({
-      idPost: req.params.idPost
+      idPost: req.params.idPost,
+      status: 'A'
     }).populate({
       path: 'idUser'
     })
