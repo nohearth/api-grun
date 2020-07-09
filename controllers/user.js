@@ -1,6 +1,7 @@
 const mUser = require('../models/user')
 const mTools = require('../models/tools')
 const validate = require('../config/validate')
+const responses = require('../utils/responses')
 
 async function createUser(req, res) {
   
@@ -37,16 +38,16 @@ async function loginUser(req, res) {
       email: req.body.email
     })
     if (!valUser) {
-      return res.status(401).json({message: 'Error, el usuario no existe'})
+      return responses.makeResponseError(res, 'E-Login-01')
     }
     const valPass = await validate.comparePassword(req.body.password, valUser.password)
     if(!valPass) {
-      return res.status(402).json({message: 'Error, contraseña invalida'})
+      return responses.makeResponseError(res, 'E-Login-02')
     }
     const token = await valUser.generateToken()
     res.status(200).json(token)
   } catch (e) {
-    res.status(400).json({message: e})
+    res.status(204).json({message: e})
   }
 }
 
