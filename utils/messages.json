@@ -1,4 +1,6 @@
 {
   "E-Login-01": "El correo ingresado no está registrado",
-  "E-Login-02": "La contraseña ingresada es incorrecta"
+  "E-Login-02": "La contraseña ingresada es incorrecta",
+  "E-CreateUser-01": "Error, el correo ingresado ya està registrado",
+  "E-CreateUser-02": "¡Registrado Satisfactoriamente!"
 }

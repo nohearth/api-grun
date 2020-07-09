@@ -13,7 +13,7 @@ async function createUser(req, res) {
     email: value.email
   })
   if (valUser) {
-    return res.status(401).json({message: 'Error, ya existe el correo'})
+    return responses.makeResponseError(res, 'E-CreateUser-01')
   }
 
   const user = new mUser({
@@ -26,6 +26,7 @@ async function createUser(req, res) {
   try {
     const saveUser = await user.save()
     //const token = await user.generateToken()
+    return responses.makeResponseError(res, 'E-CreateUser-02')
     res.status(200).json(saveUser)
   } catch (e) {
     res.status(402).json({message: e})
