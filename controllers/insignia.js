@@ -16,6 +16,7 @@ async function addInsigniaByUser(req, res) {
 }
 
 async function createInsignia(req, res) {
+  
   const urlIcon = validate.setUrlImg(req.file.path)
   const insignia = new mInsignia({
     title: req.body.title,
