@@ -50,24 +50,16 @@ function comparePassword(password, encrypedPassword) {
 }
 
 function messageNotficaciton(group, name) {
-    const msg = ``
     switch (group) {
         case 'Post':
-            msg = `No se si este va, el de insignia, aun me falta pensarlo un poco`
-            break
+            return `No se si este va, el de insignia, aun me falta pensarlo un poco`
         case 'Like':
-            msg = `${name} ha reacionado a tu publicación`
-            break
+            return `${name} ha reacionado a tu publicación`
         case 'Comment':
-            msg = `${name} ha comentado tu publicación`
-            break
+            return `${name} ha comentado tu publicación`
         case 'Insignia':
-            msg = `Has conseguido una nueva insignia`
-            break    
-        default:
-            break;
+            return `Has conseguido una nueva insignia`
     }
-    return msg
 }
 
 module.exports = {

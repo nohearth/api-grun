@@ -1,5 +1,6 @@
 const mInsignia = require('../models/insignia')
 const mListInsig = require('../models/listInsignia')
+const mNotification = require('../models/notification')
 const validate = require('../config/validate')
 
 async function addInsigniaByUser(req, res) {
@@ -59,7 +60,7 @@ async function updateInsigniaByUser(req, res) {
         
         let valProgres = list[i].progres + req.body.progres
 
-        if(list[i].idInsignia.objective === req.body.progres && list[i].status === false ) {
+        if(list[i].idInsignia.objective === valProgres && list[i].status === false ) {
           
           await mListInsig.updateOne({
             _id: list[i]._id
@@ -69,7 +70,15 @@ async function updateInsigniaByUser(req, res) {
               status: true
             }
           })
-        } else if(list[i].idInsignia.objective > req.body.progres && list[i].status === false ) {
+          const name = ''
+          const msg = validate.messageNotficaciton('Insignia', name)
+          const notificacion = mNotification.create({
+            group: 'Insignia',
+            idUser: req.params.idUser,
+            message: msg
+          })
+          await notificacion.save()
+        } else if(list[i].idInsignia.objective > valProgres && list[i].status === false ) {
           
           await mListInsig.updateOne({
             _id: list[i]._id
